@@ -345,11 +345,13 @@ for i in "${themes[@]}"; do
   echo "Start ${i}"
   git clone git@github.com:quartz-themes/${i}.git
   cd ${i}
-  npm install
+  # npm install
   # git config pull.rebase >&- || git config pull.rebase false
   git config --local pull.rebase true
   git config remote.template.url >&- || git remote add template git@github.com:quartz-themes/quartz-themes-preview-template.git
   git pull -X theirs template v4 --allow-unrelated-histories --no-edit
+  # rm .github/workflows/deploy-preview.yml
+  # rm .github/workflows/update.yml
   git commit -a -m "Updated to latest template."
   git push || git push --force
   # git push
